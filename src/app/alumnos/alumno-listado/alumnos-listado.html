@@ -2,6 +2,7 @@
   [todos]="getTodos()"
   [hombres]="getHombres()"
   [mujeres]="getMujeres()"
+  (globalElegido)="alCambiar($event)"
 ></app-alumnos-count>
 <table>
   <thead>
@@ -13,15 +14,17 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let alumno of alumnos">
-      <td>
-        {{ alumno.nombre | uppercase | alumnoTitulo : alumno.sexo }}
-        {{ alumno.apellidos | uppercase }}
-      </td>
-      <td>{{ alumno.direccion }}</td>
-      <td>{{ alumno.fnac | date : 'dd/MM/yyyy' }}</td>
-      <td>{{ alumno.sexo }}</td>
-    </tr>
+    <ng-container *ngFor="let alumno of alumnos">
+      <tr *ngIf="seleccion == 'Todos' || seleccion == alumno.sexo">
+        <td>
+          {{ alumno.nombre | uppercase | alumnoTitulo : alumno.sexo }}
+          {{ alumno.apellidos | uppercase }}
+        </td>
+        <td>{{ alumno.direccion }}</td>
+        <td>{{ alumno.fnac | date : 'dd/MM/yyyy' }}</td>
+        <td>{{ alumno.sexo }}</td>
+      </tr>
+    </ng-container>
     <tr *ngIf="!alumnos || alumnos.length == 0">
       <td colspan="4" align="center">No hay alumnos disponibles</td>
     </tr>
