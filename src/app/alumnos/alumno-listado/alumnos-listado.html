@@ -8,7 +8,8 @@
   <thead>
     <tr>
       <th>Nombre</th>
-      <th>Dirección</th>
+      <th>Email</th>
+      <th>Foto</th>
       <th>F. Nac.</th>
       <th>Sexo</th>
     </tr>
@@ -17,10 +18,12 @@
     <ng-container *ngFor="let alumno of alumnos">
       <tr *ngIf="seleccion == 'Todos' || seleccion == alumno.sexo">
         <td>
-          {{ alumno.nombre | uppercase | alumnoTitulo : alumno.sexo }}
-          {{ alumno.apellidos | uppercase }}
+          {{ alumno.nombre | uppercase | alumnoTitulo : alumno.sexo | uppercase }}
         </td>
-        <td>{{ alumno.direccion }}</td>
+        <td>
+          {{ alumno.email | uppercase }}
+        </td>
+        <td>{{ alumno.foto }}</td>
         <td>{{ alumno.fnac | date : 'dd/MM/yyyy' }}</td>
         <td>{{ alumno.sexo }}</td>
       </tr>

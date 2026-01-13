@@ -1,24 +1,28 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlumnoTituloPipe } from '../alumno-titulo.pipe';
 import { AlumnosCount } from '../alumnos-count/alumnos-count';
+import { Alumno } from '../Alumno';
+import { Alumnos } from '../alumnos';
 
 @Component({
   selector: 'app-alumnos-listado',
   imports: [CommonModule, AlumnoTituloPipe, AlumnosCount],
   templateUrl: './alumnos-listado.html',
-  styleUrl: './alumnos-listado.css'
+  styleUrl: './alumnos-listado.css',
+  providers: [Alumnos]
 })
-export class AlumnosListado {
+export class AlumnosListado implements OnInit {
   seleccion: string = 'Todos';
   
-  alumnos: any[] = [
-    {nombre: 'Tadej', apellidos: 'Pogacar', direccion: 'Klanec, Eslovenia', fnac: '9/21/1998', sexo: 'Hombre' },
-    {nombre: 'Primoz', apellidos: 'Roglic', direccion: 'Trbovlje, Eslovenia', fnac: '10/29/1989', sexo: 'Hombre' },
-    {nombre: 'Wout', apellidos: 'Van Aert', direccion: 'Herentals, Bélgica', fnac: '9/15/1994', sexo: 'Hombre' },
-    {nombre: 'Marianne', apellidos: 'Vos', direccion: 's-Hertogenbosch, Países Bajos', fnac: '5/13/1987', sexo: 'Mujer' },
-    {nombre: 'Mathieu', apellidos: 'Van der Poel', direccion: 'Kapellen, Bélgica', fnac: '1/19/1995', sexo: 'Hombre' }
-  ]
+  alumnos: Alumno[] = [];
+
+  constructor(private losAlumnos: Alumnos){}
+  ngOnInit(): void {
+    this.losAlumnos.getAlumnos().subscribe((data: Alumno[]) => {
+      this.alumnos = data;
+    });
+  }
 
   alCambiar(opcionElegida: string){
     this.seleccion = opcionElegida;

@@ -5,7 +5,7 @@ import { AlumnosListado } from './alumnos/alumno-listado/alumnos-listado';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, UnAlumno, AlumnosListado],
+  imports: [UnAlumno, AlumnosListado],
   template: `
     <div align="center">
       <h1>{{ enzabezado }}</h1>
