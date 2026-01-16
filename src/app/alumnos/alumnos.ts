@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Alumno } from './Alumno';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -18,5 +18,12 @@ export class Alumnos {
   }
   getAlumnosById(id: number): Observable<Alumno>{
     return this.http.get<Alumno>(`${this.apiURL}/${id}`);
+  }
+  addAlumno(alumno: Alumno): Observable<Alumno>{
+    const headers = new HttpHeaders({'Content-type': 'application/json'});
+    return this.http.post<Alumno>(this.apiURL, alumno, { headers });
+  }
+  deleteAlumno(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.apiURL}/${id}`);
   }
 }

@@ -4,7 +4,7 @@ export class Alumno{
         public nombre: string,
         public email: string,
         public foto: string,
-        public cursoId: number,
+        public cursoID: number,
         public fnac: string,
         public sexo: string,
         public nom_padre?: string

@@ -4,10 +4,11 @@ import { AlumnoTituloPipe } from '../alumno-titulo.pipe';
 import { AlumnosCount } from '../alumnos-count/alumnos-count';
 import { Alumno } from '../Alumno';
 import { Alumnos } from '../alumnos';
+import { BotonComponent } from '../../elementos/boton/boton';
 
 @Component({
   selector: 'app-alumnos-listado',
-  imports: [CommonModule, AlumnoTituloPipe, AlumnosCount],
+  imports: [CommonModule, AlumnoTituloPipe, AlumnosCount, BotonComponent],
   templateUrl: './alumnos-listado.html',
   styleUrl: './alumnos-listado.css',
   providers: [Alumnos]
@@ -35,5 +36,12 @@ export class AlumnosListado implements OnInit {
   }
   getMujeres(): number {
     return this.alumnos.filter(a => a.sexo == 'Mujer').length;
+  }
+  eliminarAlumno(id: number){
+    if(confirm("¿Estás seguro de que deseas eliminar este alumno?")) {
+      this.losAlumnos.deleteAlumno(id).subscribe(() => {
+        this.alumnos = this.alumnos.filter(a => a.id !== id);
+      });
+    }
   }
 }
