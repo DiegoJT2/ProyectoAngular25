@@ -1,25 +1,26 @@
 import { Component } from '@angular/core';
-import { UnAlumno } from './alumnos/un-alumno/un-alumno';
-import { AlumnosListado } from './alumnos/alumno-listado/alumnos-listado';
-import { AlumnoFormulario } from './alumnos/alumno-formulario/alumno-formulario';
+import { RouterOutlet } from '@angular/router';
+import { Menu } from './elementos/menu/menu';
 
 @Component({
   selector: 'app-root',
-  imports: [UnAlumno, AlumnosListado, AlumnoFormulario],
+  imports: [RouterOutlet, Menu],
   template: `
-      <app-un-alumno></app-un-alumno>
-      <app-alumno-formulario></app-alumno-formulario>
-      <app-alumnos-listado></app-alumnos-listado>
+      <app-menu
+        [title] = "'Salesianos'"
+        [menuItems] = "[
+          {label: 'Inicio', link: '/', icono: 'fa fa-home'},
+          {label: 'Alumno', link: '/alumno', icono: 'fa fa-user'},
+          {label: 'Listado', link: '/alumno-lista', icono: 'fa fa-film'},
+          {label: 'Insertar', link: '/alumno-insertar', icono: 'fa fa-pen'}
+        ]"
+      ></app-menu>
+      <div class="container mt-4">
+        <router-outlet></router-outlet>
+      </div>
   `,
   styleUrl: './app.css'
 })
 export class AppComponent {
-  enzabezado: string = "DATOS COLEGIO";
-  nombre: string = "Salesianos";
-  ciudad: string = "Zaragoza";
-  imagen: string = "https://zaragoza.salesianos.edu/colegio/wp-content/uploads/sites/2/2017/03/IMG_2114_p.jpg";
-
-  getNombreCompleto(): string {
-    return this.nombre + " " + this.ciudad;
-  }
+  title = 'ProyectoAngular25';
 }
