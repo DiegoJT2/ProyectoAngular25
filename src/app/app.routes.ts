@@ -8,4 +8,5 @@ export const routes: Routes = [
     {path: 'alumno', component: UnAlumno},
     {path: 'alumno-lista', component: AlumnosListado},
     {path: 'alumno-insertar', component: AlumnoFormulario},
+    {path: 'alumno-insertar/:id', component: AlumnoFormulario},
 ];

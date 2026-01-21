@@ -5,10 +5,11 @@ import { AlumnosCount } from '../alumnos-count/alumnos-count';
 import { Alumno } from '../Alumno';
 import { Alumnos } from '../alumnos';
 import { BotonComponent } from '../../elementos/boton/boton';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-alumnos-listado',
-  imports: [CommonModule, AlumnoTituloPipe, AlumnosCount, BotonComponent],
+  imports: [CommonModule, AlumnoTituloPipe, AlumnosCount, BotonComponent, RouterLink],
   templateUrl: './alumnos-listado.html',
   styleUrl: './alumnos-listado.css',
   providers: [Alumnos]
