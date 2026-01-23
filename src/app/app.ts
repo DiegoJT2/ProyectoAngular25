@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Menu } from './elementos/menu/menu';
+import { Selector } from "./elementos/selector/selector";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Menu],
+  imports: [RouterOutlet, Menu, Selector],
   template: `
+      <div class="container mt-5">
+        <app-selector label="Alumnos: "></app-selector>
+      </div>
       <app-menu
         [title] = "'Salesianos'"
         [menuItems] = "[
