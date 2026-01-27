@@ -1,14 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Menu } from './elementos/menu/menu';
 import { Selector } from "./elementos/selector/selector";
+import { Alumnos } from './alumnos/alumnos';
+import { Alumno } from './alumnos/Alumno';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, Menu, Selector],
   template: `
       <div class="container mt-5">
-        <app-selector label="Alumnos: "></app-selector>
+        <app-selector
+        label="Alumnos: "
+        [options]="alumnos"
+        (selectedValueChange)="onAlumnoChange($event)">
+      </app-selector>
+      <p class="mt-3">Alumno seleccionado: {{selectedAlumno}}</p>
       </div>
       <app-menu
         [title] = "'Salesianos'"
@@ -25,6 +32,20 @@ import { Selector } from "./elementos/selector/selector";
   `,
   styleUrl: './app.css'
 })
-export class AppComponent {
-  title = 'ProyectoAngular25';
+export class AppComponent implements OnInit {
+  alumnos: {value: number, text: string}[] = [];
+  selectedAlumno: number = 0;
+
+  constructor(private alumnoService: Alumnos) {}
+  ngOnInit(): void {
+    this.alumnoService.getAlumnos().subscribe((data: Alumno[]) =>{
+      this.alumnos = data.map(alumno => ({
+        value: alumno.id,
+        text: alumno.nombre
+      }))
+    })
+  }
+  onAlumnoChange(optionElegida:number):void{
+    this.selectedAlumno = optionElegida;
+  }
 }
