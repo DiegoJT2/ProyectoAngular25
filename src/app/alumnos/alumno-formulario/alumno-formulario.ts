@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './alumno-formulario.css',
 })
 export class AlumnoFormulario implements OnInit {
-  alumno: Alumno = new Alumno(0, "", "", "", 1, "", "", "");
+  alumno: Alumno = new Alumno(0, "", "", "", 1, 1, "", "", "");
   editar: boolean = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private alumnoService: Alumnos) {}

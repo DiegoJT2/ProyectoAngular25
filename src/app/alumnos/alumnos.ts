@@ -8,6 +8,7 @@ import { map, Observable } from 'rxjs';
 })
 export class Alumnos {
   private apiURL = "https://localhost:7232/api/alumno";
+  private apiURL2 = "https://localhost:7232/api/alumno/porPais";
 
   constructor(private http: HttpClient){}
 
@@ -25,5 +26,8 @@ export class Alumnos {
   }
   deleteAlumno(id: number): Observable<void>{
     return this.http.delete<void>(`${this.apiURL}/${id}`);
+  }
+  getAlumnosByPais(id: number): Observable<Alumno[]>{
+    return this.http.get<Alumno[]>(`${this.apiURL2}/${id}`);
   }
 }
