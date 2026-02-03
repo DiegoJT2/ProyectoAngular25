@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { UnAlumno } from './alumnos/un-alumno/un-alumno';
 import { AlumnosListado } from './alumnos/alumno-listado/alumnos-listado';
 import { AlumnoFormulario } from './alumnos/alumno-formulario/alumno-formulario';
+import { AlumnosPorPais } from './alumnos/alumnos-por-pais/alumnos-por-pais';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/alumno-lista', pathMatch: 'full'},
@@ -9,4 +10,5 @@ export const routes: Routes = [
     {path: 'alumno-lista', component: AlumnosListado},
     {path: 'alumno-insertar', component: AlumnoFormulario},
     {path: 'alumno-insertar/:id', component: AlumnoFormulario},
+    {path: 'alumno-por-pais', component: AlumnosPorPais},
 ];
