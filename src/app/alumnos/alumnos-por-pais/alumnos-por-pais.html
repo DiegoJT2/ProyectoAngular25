@@ -18,12 +18,12 @@
   </thead>
   <tbody>
     <ng-container *ngFor="let alumno of alumnos">
-      <tr *ngIf="seleccion == 'Todos' || seleccion == alumno.sexo">
+      <tr>
         <td>
           {{ alumno.nombre | uppercase | alumnoTitulo: alumno.sexo }}
         </td>
         <td>{{ alumno.email }}</td>
-        <td>{{ alumno.fnac | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ alumno.fnac | date: 'dd/MM/y' }}</td>
         <td>{{ alumno.sexo }}</td>
         <td>
           <app-boton
