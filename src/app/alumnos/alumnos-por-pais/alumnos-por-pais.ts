@@ -7,10 +7,11 @@ import { RouterLink } from '@angular/router';
 import { AlumnoTituloPipe } from "../alumno-titulo.pipe";
 import { BotonComponent } from "../../elementos/boton/boton";
 import {Selector} from "../../elementos/selector/selector";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-alumnos-por-pais',
-  imports: [RouterLink, AlumnoTituloPipe, BotonComponent, Selector],
+  imports: [RouterLink, AlumnoTituloPipe, BotonComponent, Selector, CommonModule],
   templateUrl: './alumnos-por-pais.html',
   styleUrl: './alumnos-por-pais.css',
 })
@@ -30,5 +31,12 @@ export class AlumnosPorPais implements OnInit {
     this.alumnosService.getAlumnosByPais(opcionElegida).subscribe((data: Alumno[]) => {
       this.alumnos = data;
     })
+  }
+  eliminarAlumno(id: number){
+    if(confirm("¿Estás seguro de que deseas eliminar este alumno?")) {
+      this.alumnosService.deleteAlumno(id).subscribe(() => {
+        this.alumnos = this.alumnos.filter(a => a.id !== id);
+      });
+    }
   }
 }
