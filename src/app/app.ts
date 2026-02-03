@@ -4,17 +4,18 @@ import { Menu } from './elementos/menu/menu';
 import { Selector } from "./elementos/selector/selector";
 import { Alumnos } from './alumnos/alumnos';
 import { Alumno } from './alumnos/Alumno';
+import { AlumnosPorPais } from './alumnos/alumnos-por-pais/alumnos-por-pais';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Menu, Selector],
+  imports: [RouterOutlet, Menu, Selector, AlumnosPorPais],
   template: `
       <div class="container mt-5">
         <app-selector
-        label="Alumnos: "
-        [options]="alumnos"
-        (selectedValueChange)="onAlumnoChange($event)">
-      </app-selector>
+          label="Alumnos: "
+          [options]="alumnos"
+          (selectedValueChange)="onAlumnoChange($event)">
+        </app-selector>
       <p class="mt-3">Alumno seleccionado: {{selectedAlumno}}</p>
       </div>
       <app-menu
@@ -23,7 +24,8 @@ import { Alumno } from './alumnos/Alumno';
           {label: 'Inicio', link: '/', icono: 'fa fa-home'},
           {label: 'Alumno', link: '/alumno', icono: 'fa fa-user'},
           {label: 'Listado', link: '/alumno-lista', icono: 'fa fa-film'},
-          {label: 'Insertar', link: '/alumno-insertar', icono: 'fa fa-pen'}
+          {label: 'Insertar', link: '/alumno-insertar', icono: 'fa fa-pen'},
+          {label: 'Por País', link: '/alumno-por-pais', icono: 'fa fa-man'}
         ]"
       ></app-menu>
       <div class="container mt-4">
